@@ -9,9 +9,9 @@ select choice in "${choices[@]}"; do
 					sudo apt-get install openjdk-11-jre
 					export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 					export PATH=$JAVA_HOME/bin:$PATH
-					echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> ~/.bash_profile
-					echo 'export PATH=$JAVA_HOME/bin:$PATH'	>> ~/.bash_profile		
-					source ~/.bash_profile
+					echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> ~/.bashrc
+					echo 'export PATH=$JAVA_HOME/bin:$PATH'	>> ~/.bashrc		
+					source ~/.bashrc
 					sleep 1
 					break
 					;;
