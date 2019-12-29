@@ -1,22 +1,29 @@
 #!/bin/bash
-sudo apt-get -y update
-sudo apt-get -y upgrade
+if [[ $UID != 0 ]]; then
+    echo "Please run this script with sudo:"
+    echo "sudo $0 $*"
+    exit 1
+fi
+
+apt-get -y update
+ apt-get -y upgrade
 
 
-sudo apt-get install -y libcurl4-openssl-dev
-sudo apt-get install -y libssl-dev
-sudo apt-get install -y jq
-sudo apt-get install -y ruby-full
-sudo apt-get install -y libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev
-sudo apt-get install -y build-essential libssl-dev libffi-dev python-dev
-sudo apt-get install -y python-setuptools
-sudo apt-get install -y libldns-dev
-sudo apt-get install -y python3-pip
-sudo apt-get install -y python-pip
-sudo apt-get install -y python-dnspython
-sudo apt-get install -y git
-sudo apt-get install -y rename
-sudo apt-get install -y xargs
+apt-get install -y libcurl4-openssl-dev
+apt-get install -y libssl-dev
+apt-get install -y jq
+apt-get install -y ruby-full
+apt-get install -y libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev
+apt-get install -y build-essential libssl-dev libffi-dev python-dev
+apt-get install -y python-setuptools
+apt-get install -y libldns-dev
+apt-get install -y python3-pip
+apt-get install -y python-pip
+apt-get install -y python-dnspython
+apt-get install -y git
+apt-get install -y rename
+apt-get install -y xargs
+apt-get install -y firefox
 
 echo "installing bash_profile aliases from recon_profile"
 git clone https://github.com/nahamsec/recon_profile.git
@@ -39,8 +46,8 @@ select choice in "${choices[@]}"; do
 
 					echo "Installing Golang"
 					wget https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
-					sudo tar -xvf go1.13.4.linux-amd64.tar.gz
-					sudo mv go /usr/local
+					tar -xvf go1.13.4.linux-amd64.tar.gz
+					mv go /usr/local
 					export GOROOT=/usr/local/go
 					export GOPATH=$HOME/go
 					export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
@@ -60,6 +67,7 @@ select choice in "${choices[@]}"; do
 done
 fi
 
+# TODO:  doesnt work on docker image
 #instll java-jdk
 if [[ -z "$JAVA_HOME" ]];then
 echo "It looks like Java jdk is not installed, would you like to install it now"
@@ -68,7 +76,7 @@ select choice in "${choices[@]}"; do
         case $choice in
                 yes)
 					echo "Installing Java JDK 11"
-					sudo apt-get install openjdk-11-jre
+					apt-get install -y openjdk-11-jre
 					export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 					export PATH=$JAVA_HOME/bin:$PATH
 					echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> ~/.bashrc
@@ -104,13 +112,13 @@ echo "done"
 
 #install chromium
 echo "Installing Chromium"
-sudo snap install chromium
+snap install chromium
 echo "done"
 
 echo "installing JSParser"
 git clone https://github.com/nahamsec/JSParser.git
 cd JSParser*
-sudo python setup.py install
+python setup.py install
 cd ~/tools/
 echo "done"
 
@@ -131,7 +139,7 @@ echo "done"
 echo "installing wpscan"
 git clone https://github.com/wpscanteam/wpscan.git
 cd wpscan*
-sudo gem install bundler && bundle install --without test
+gem install bundler && bundle install --without test
 cd ~/tools/
 echo "done"
 
@@ -168,7 +176,7 @@ cd ~/tools/
 echo "done"
 
 echo "installing nmap"
-sudo apt-get install -y nmap
+apt-get install -y nmap
 echo "done"
 
 echo "installing massdns"
@@ -215,7 +223,17 @@ cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt
 cd ~/tools/
 echo "done"
 
+# Install Milkman
+echo "installing Milkman"
+wget https://github.com/warmuuh/milkman/releases/download/3.7.1/milkman-dist-linux64-bin.tgz
+tar -xvzf milkman-dist-linux64-bin.tgz
+echo "done"
 
+# Download Ghidra
+echo "Downloading Ghidra"
+wget https://ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip
+untip ghidra_9.1.1_PUBLIC_20191218.zip
+echo "done"
 
 echo -e "\n\n\n\n\n\n\n\n\n\n\nDone! All tools are set up in ~/tools"
 ls -la
