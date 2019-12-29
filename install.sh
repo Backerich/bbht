@@ -6,7 +6,8 @@ if [[ $UID != 0 ]]; then
 fi
 
 apt-get -y update
- apt-get -y upgrade
+apt-get -y upgrade
+dpkg --configure -a
 
 
 apt-get install -y libcurl4-openssl-dev
@@ -24,6 +25,7 @@ apt-get install -y git
 apt-get install -y rename
 apt-get install -y xargs
 apt-get install -y firefox
+apt-get install -y wget
 
 echo "installing bash_profile aliases from recon_profile"
 git clone https://github.com/nahamsec/recon_profile.git
@@ -227,14 +229,15 @@ echo "done"
 echo "installing Milkman"
 wget https://github.com/warmuuh/milkman/releases/download/3.7.1/milkman-dist-linux64-bin.tgz
 tar -xvzf milkman-dist-linux64-bin.tgz
+rm milkman-dist-linux64-bin.tgz
 echo "done"
 
 # Download Ghidra
 echo "Downloading Ghidra"
 wget https://ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip
 untip ghidra_9.1.1_PUBLIC_20191218.zip
-echo "done"
+rm ghidra_9.1.1_PUBLIC_20191218.zip
+echo "done" 
 
 echo -e "\n\n\n\n\n\n\n\n\n\n\nDone! All tools are set up in ~/tools"
 ls -la
-echo "One last time: don't forget to set up AWS credentials in ~/.aws/!"
