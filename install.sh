@@ -1,4 +1,5 @@
 #!/bin/bash
+# I know not all application should download as root but it is a workaround for docker that dont have sudo
 if [[ $UID != 0 ]]; then
     echo "Please run this script with sudo:"
     echo "sudo $0 $*"
@@ -42,7 +43,6 @@ choices=("yes" "no")
 select choice in "${choices[@]}"; do
         case $choice in
                 yes)
-
 					echo "Installing Golang"
 					wget https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
 					tar -xvf go1.13.4.linux-amd64.tar.gz
@@ -128,7 +128,8 @@ echo "done"
 echo "installing wpscan"
 git clone https://github.com/wpscanteam/wpscan.git
 cd wpscan*
-gem install bundler && bundle install --without test
+gem install bundler
+bundle config set without 'test'
 cd ~/tools/
 echo "done"
 
