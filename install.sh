@@ -120,11 +120,6 @@ pip install -r requirements.txt
 cd ~/tools/
 echo "done"
 
-echo "installing teh_s3_bucketeers"
-git clone https://github.com/tomdev/teh_s3_bucketeers.git
-cd ~/tools/
-echo "done"
-
 echo "installing wpscan"
 git clone https://github.com/wpscanteam/wpscan.git
 cd wpscan*
@@ -197,17 +192,17 @@ echo "installing crtndstry"
 git clone https://github.com/nahamsec/crtndstry.git
 echo "done"
 
-echo "installing EyeWitness"
-git clone https://github.com/FortyNorthSecurity/EyeWitness.git
-cd ~/tools/
-echo "done"
-
 echo "downloading Seclists"
 cd ~/tools/
 git clone https://github.com/danielmiessler/SecLists.git
 cd ~/tools/SecLists/Discovery/DNS/
 ##THIS FILE BREAKS MASSDNS AND NEEDS TO BE CLEANED
 cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt
+cd ~/tools/
+echo "done"
+
+echo "installing EyeWitness"
+git clone https://github.com/FortyNorthSecurity/EyeWitness.git
 cd ~/tools/
 echo "done"
 
