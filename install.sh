@@ -9,7 +9,6 @@ apt-get -y update
 apt-get -y upgrade
 dpkg --configure -a
 
-
 apt-get install -y libcurl4-openssl-dev
 apt-get install -y libssl-dev
 apt-get install -y jq
@@ -34,8 +33,6 @@ cat bash_profile >> ~/.bash_profile
 source ~/.bash_profile
 cd ~/tools/
 echo "done"
-
-
 
 #install go
 if [[ -z "$GOPATH" ]];then
@@ -95,13 +92,6 @@ select choice in "${choices[@]}"; do
 	esac	
 done
 fi
-
-#Don't forget to set up AWS credentials!
-echo "Don't forget to set up AWS credentials!"
-apt install -y awscli
-echo "Don't forget to set up AWS credentials!"
-
-
 
 #create a tools folder in ~/
 mkdir ~/tools
