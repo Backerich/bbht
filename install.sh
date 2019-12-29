@@ -66,7 +66,6 @@ select choice in "${choices[@]}"; do
 done
 fi
 
-# TODO:  doesnt work on docker image
 #instll java-jdk
 if [[ -z "$JAVA_HOME" ]];then
 echo "It looks like Java jdk is not installed, would you like to install it now"
@@ -121,12 +120,10 @@ pip install -r requirements.txt
 cd ~/tools/
 echo "done"
 
-
 echo "installing teh_s3_bucketeers"
 git clone https://github.com/tomdev/teh_s3_bucketeers.git
 cd ~/tools/
 echo "done"
-
 
 echo "installing wpscan"
 git clone https://github.com/wpscanteam/wpscan.git
@@ -140,7 +137,6 @@ git clone https://github.com/maurosoria/dirsearch.git
 cd ~/tools/
 echo "done"
 
-
 echo "installing lazys3"
 git clone https://github.com/nahamsec/lazys3.git
 cd ~/tools/
@@ -150,7 +146,6 @@ echo "installing virtual host discovery"
 git clone https://github.com/jobertabma/virtual-host-discovery.git
 cd ~/tools/
 echo "done"
-
 
 echo "installing sqlmap"
 git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
