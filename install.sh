@@ -216,7 +216,7 @@ echo "done"
 # Download Ghidra
 echo "Downloading Ghidra"
 wget https://ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip
-untip ghidra_9.1.1_PUBLIC_20191218.zip
+unzip ghidra_9.1.1_PUBLIC_20191218.zip
 rm ghidra_9.1.1_PUBLIC_20191218.zip
 echo "done" 
 
