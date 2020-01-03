@@ -203,6 +203,8 @@ echo "done"
 
 echo "installing EyeWitness"
 git clone https://github.com/FortyNorthSecurity/EyeWitness.git
+cd ~/tools/EyeWitness/setup/
+./setup.sh
 cd ~/tools/
 echo "done"
 
